@@ -1,0 +1,62 @@
+*,
+*:before,
+*:after
+  margin: 0
+  padding: 0
+  border: 0
+  box-sizing: border-box
+
+ol, ul
+  list-style: none
+
+body
+  width: 100vw
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+  line-height: 1.2
+  overflow-x: hidden
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section
+  display: block
+
+////////////////////////////////////////////////////////////////////
+
+body,
+.smooth-container
+  scroll-behavior: smooth
+
+
+//google reset
+.gmnoprint
+  right: 40px !important
+
+.gm-svpc
+  display: none !important
+
+.gm-style-cc
+  display: none !important
+
+.gmnoprint.gm-style-cc
+  display: none !important
+
+.gm-style > div:nth-child(2)
+  display: none !important
+
+.gmnoprint.gm-style-cc + div
+  margin: 0 !important
+  top: auto !important
+  right: 24px !important
+  bottom: 79px !important
+  left: auto !important
+
+
+@font-face {
+  font-family: 'CenturyGothic';
+  src: url('/assets/fonts/gothic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body
+  font-family "CenturyGothic", sans-serif

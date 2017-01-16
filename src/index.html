@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Belappgrade</title>
+        <meta name="description" content="We provide information about startup companies, conferences, cultural events, public art and job opportunities.">
+        <meta name="author" content="Filip Vitas">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="theme-color" content="#333">
+        <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png">
+
+        <link rel="stylesheet" href="style.css">
+
+        <!--preload-->
+        <!--<link rel="preload" as="font" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0" type="font/woff2" crossorigin="anonymous">-->
+
+        <!--prefetch on idle-->
+        <!--<link rel="prefetch" href="image.png">-->
+
+        <!--dns prefech-->
+        <link rel="dns-prefetch" href="http://maxcdn.bootstrapcdn.com">
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+        <link rel="dns-prefetch" href="https://zengabor.github.io">
+        <link rel="dns-prefetch" href="https://maps.googleapis.com">
+
+        <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!--GOOGLE MAPS-->
+        <style type="text/css">.gm-style .gm-style-mtc label,.gm-style .gm-style-mtc div{font-weight:400}</style>
+        <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+        <style type="text/css">.gm-style .gm-style-cc span,.gm-style .gm-style-cc a,.gm-style .gm-style-mtc div{font-size:10px}</style>
+        <style type="text/css">@media print {  .gm-style .gmnoprint, .gmnoprint {    display:none  }}@media screen {  .gm-style .gmnoscreen, .gmnoscreen {    display:none  }}</style>
+        <style type="text/css">.gm-style{font-family:Roboto,Arial,sans-serif;font-size:11px;font-weight:400;text-decoration:none}.gm-style img{max-width:none}</style>
+        <!---->
+    </head>
+
+    </head>
+    <body>
+        <home></home>
+
+        <div class="map" style="background-color: black; position: relative; outline: 1px solid white;overflow: hidden;">
+
+            <google-maps></google-maps>
+
+            <img class="logo" src="/assets/images/logo.min.png" alt="belgradeapp" style="
+                display: block;
+                position: absolute;
+                top: 10px;
+                right: 20px;
+                width: 250px;
+                z-index: 10;
+                cursor: pointer;
+                user-select: none;">
+
+            <menu></menu>
+        </div>
+
+        <script src="./riot/riot.js"></script>
+
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQ0m-L6bPS85SKhqN_bke9RR0VOXY66H4"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps-api-v3/api/js/27/8/common.js" async></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps-api-v3/api/js/27/8/map.js" async></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps-api-v3/api/js/27/8/util.js" async></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps-api-v3/api/js/27/8/marker.js" async></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps-api-v3/api/js/27/8/onion.js" async></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps-api-v3/api/js/27/8/stats.js" async></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps-api-v3/api/js/27/8/controls.js" async></script>
+
+        <script src="app.js" async></script>
+        <script src="https://zengabor.github.io/zenscroll/zenscroll-min.js" async defer></script>
+
+        <script async>
+            // PRELOAD IMAGES
+            function preloadImages() {
+                var images = [
+                    "/assets/images/bulb-orange.png",
+                    "/assets/images/masks-orange.png"
+                ]
+
+                images.forEach(image => new Image().src = image)
+            }
+
+            if ('requestIdleCallback' in window) {
+                window.requestIdleCallback(preloadImages)
+            } else {
+                setTimeout(preloadImages, 2000)
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,66 @@
+home
+  position: relative
+  display: block
+  width: 100vw
+  height: calc(100vh + 1px);
+  border-bottom: 1px solid white;
+  background: url("./assets/images/1502862_most_na_Adi_2a_v.jpg"), linear-gradient(180deg, #0073d5, #1d294f 100%)
+  background-size: cover
+
+  background-position-x: right
+  /* background-position-x: left */
+  /* background-position-x: center */
+  background-position-y: top
+  /* background-position-y: bottom */
+  /* background-position-y: center */
+
+  @media screen and (max-width: 480px)
+    background: url("./assets/images/1502862_most_na_Adi_2a_v1.jpg"), #0166be
+    background-position: -1047px -282px
+
+
+  .logo
+    position: absolute
+    display: block
+    top: 12%
+    left: 50%
+    width: 50vw
+    background: transparent
+    transform: translateX(-50%)
+
+  @keyframes jump
+    0%
+      transform: translateY(-10px) rotate(135deg)
+    50%
+      transform: translateY(0) rotate(135deg)
+    100%
+      transform: translateY(-10px) rotate(135deg)
+
+
+  button.show-map
+    position: absolute
+    display: block
+    bottom: 10vh
+    left: 50%
+    outline: 0
+    border: none
+    border-radius: 3px
+    transform: translateX(-50%)
+    background-color: transparent
+    font-size: 40px
+    color: white
+    text-shadow: 1px 0 4px #000, 1px 0px 4px #000, 1px 0px 4px #000, 1px 0px 4px #000, 1px 0px 4px #000, 1px 0px 4px #000, 1px 0px 4px #000, 1px 0px 4px #000, 1px 0px 4px #000
+    cursor: pointer
+
+    span
+      z-index: 1000
+      display: block
+      height: 45px
+      width: 45px
+      border: solid 3px transparent
+      border-top-color: #fff
+      border-right-color: #fff
+      transform: translateZ(0) rotate(135deg)
+      box-shadow: 3px -3px 5px -1px #000
+      animation: jump 1s 0s infinite
+

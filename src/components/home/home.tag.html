@@ -1,0 +1,20 @@
+<home>
+    <img class="logo" src="./assets/images/logo.min.png" alt="">
+
+    <button class="show-map" onclick="{scrollToMap}">
+        <span></span>
+    </button>
+
+    <script>
+        const tag = this
+
+//        tag.on('mount', initTag())
+
+
+        tag.scrollToMap = function () {
+            zenscroll.center(document.getElementById("map"))
+        }
+
+    </script>
+
+</home>

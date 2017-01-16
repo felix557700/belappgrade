@@ -1,0 +1,55 @@
+<menu>
+    <div class="container {active: isMenuActive, hide: isArrowRotated}">
+        <p class="main-text" if="{!isMenuActive}">
+            Our mission is to promote entrepreneurship, innovation and creativity in Belgrade
+        </p>
+
+        <p class="choose-text" if="{!isMenuActive}">
+            Choose between different categories: Startups or Culture
+        </p>
+
+        <div class="icon-group">
+            <div class="icon icon-bulb {icon-orange: isCompanySelected}" onclick="{selectCompanies}"></div>
+            <div class="icon icon-mask {icon-orange: isCultureSelected}" onclick="{selectCulture}"></div>
+        </div>
+
+        <company-links if="{isCompanySelected}"></company-links>
+        <culture-links if="{isCultureSelected}"></culture-links>
+
+        <!--TODO only show arrow when at least one item is selected !!! -->
+        <div class="arrow {active: isArrowRotated}" onclick="{rotateArrow}" if="{isMenuActive}">
+            <i class="fa fa-chevron-up"></i>
+        </div>
+        <span class="arrow-text {active: isArrowRotated}">Currently selected</span>
+    </div>
+
+
+    <script>
+        const tag = this
+
+        tag.isMenuActive = false
+
+        tag.selectCompanies = function() {
+            tag.isMenuActive = true
+            tag.isCompanySelected = true
+            tag.isCultureSelected = false
+            tag.isCvTemplate = false
+        }
+
+        tag.selectCulture = function() {
+            tag.isMenuActive = true
+            tag.isCompanySelected = false
+            tag.isCultureSelected = true
+            tag.isCvTemplate = false
+        }
+
+        tag.closeMenu = function () {
+            tag.isMenuClosed = !tag.isMenuClosed
+        }
+
+        tag.rotateArrow = function () {
+            tag.isArrowRotated = !tag.isArrowRotated
+        }
+    </script>
+
+</menu>

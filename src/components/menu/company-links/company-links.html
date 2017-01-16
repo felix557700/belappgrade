@@ -1,0 +1,32 @@
+<company-links>
+    <ul>
+        <li onclick="{showStartups}"><span>startups</span></li>
+        <li onclick="{showCooperation}"><span>cooperation</span></li>
+        <li onclick="{showEvents}"><span>events</span></li>
+        <li onclick="{showJobOffers}"><span>job offers</span></li>
+    </ul>
+
+    <script>
+        import RiotControl from 'RiotControl'
+
+        const tag = this
+
+        tag.showStartups = function () {
+            //TODO : add orange to selected link
+
+            console.log('link show')
+            console.time('showstartups')
+            RiotControl.trigger('startup:show')
+        }
+
+        tag.showCooperation = function () {
+            RiotControl.trigger('cooperation:show')
+        }
+
+        tag.on('unmount', function () {
+            RiotControl.off('startup:show')
+            RiotControl.off('cooperation:show')
+        })
+
+    </script>
+</company-links>

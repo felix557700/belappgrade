@@ -1,0 +1,327 @@
+<google-maps>
+    <div id="map" ref="map" style="height: inherit"></div>
+
+    <script>
+        import RiotControl from 'RiotControl'
+
+        var tag = this
+        let map = undefined
+
+        tag.markers = []
+
+        tag.on('mount', function () {
+            tag.init()
+            tag.initZoomControls()
+
+            RiotControl.on('startup:show', _ => {console.log('google show');RiotControl.trigger('startup:fetch')})
+            RiotControl.on('startup:changed', tag.updateStartups)
+
+            RiotControl.on('cooperation:show', _ => RiotControl.trigger('cooperation:fetch'))
+            RiotControl.on('cooperation:changed', tag.updateCooperation)
+
+        })
+
+        tag.init = function () {
+            let mapOptions = {
+                zoom: 13,
+                center: new google.maps.LatLng(44.79937794671696, 20.44006347656246), // latitude and longitude of Belgrade
+                scrollwheel: false,
+                disableDefaultUI: true,
+
+                styles: [
+                    {
+                        "featureType": "all",
+                        "elementType": "labels.text.fill",
+                        "stylers": [
+                            {
+                                "saturation": 36
+                            },
+                            {
+                                "color": "#000000"
+                            },
+                            {
+                                "lightness": 40
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "all",
+                        "elementType": "labels.text.stroke",
+                        "stylers": [
+                            {
+                                "visibility": "on"
+                            },
+                            {
+                                "color": "#000000"
+                            },
+                            {
+                                "lightness": 16
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "all",
+                        "elementType": "labels.icon",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "administrative",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            {
+                                "color": "#000000"
+                            },
+                            {
+                                "lightness": 20
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "administrative",
+                        "elementType": "geometry.stroke",
+                        "stylers": [
+                            {
+                                "color": "#000000"
+                            },
+                            {
+                                "lightness": 17
+                            },
+                            {
+                                "weight": 1.2
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#000000"
+                            },
+                            {
+                                "lightness": 20
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#000000"
+                            },
+                            {
+                                "lightness": 21
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#9b9b9b"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            {
+                                "color": "#272727"
+                            },
+                            {
+                                "lightness": 17
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "geometry.stroke",
+                        "stylers": [
+                            {
+                                "lightness": 29
+                            },
+                            {
+                                "weight": 0.2
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.arterial",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#1f1f1f"
+                            },
+                            {
+                                "lightness": 18
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.local",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#000000"
+                            },
+                            {
+                                "lightness": 16
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.local",
+                        "elementType": "geometry.stroke",
+                        "stylers": [
+                            {
+                                "color": "#707070"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "transit",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#000000"
+                            },
+                            {
+                                "lightness": 19
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "color": "#000000"
+                            },
+                            {
+                                "lightness": 17
+                            }
+                        ]
+                    }
+                ]
+            }
+
+            map = new google.maps.Map(tag.refs.map, mapOptions)
+
+
+//            var marker = new google.maps.Marker({
+//                position: new google.maps.LatLng(40.6700, -73.9400),
+//                map: map,
+//                title: 'Here is a marker!'
+//            })
+
+            google.maps.event.addListener(map, 'click', function (event) {
+                tag.placeCursorMarker(event.latLng)
+            })
+
+            function enableScrollwheel(map) {
+                if (map) map.setOptions({scrollwheel: true})
+            }
+
+            function disableScrollwheel(map) {
+                if (map) map.setOptions({scrollwheel: false})
+            }
+        }
+
+        tag.initZoomControls = function () {
+            var controlDiv = document.createElement('div')
+            controlDiv.style.margin = '40px'
+
+            var zoomInControl = document.createElement('div')
+            zoomInControl.className = 'zoom-in'
+
+            var zoomOutControl = document.createElement('div')
+            zoomOutControl.className = 'zoom-out'
+
+            controlDiv.appendChild(zoomInControl)
+            controlDiv.appendChild(zoomOutControl)
+
+            zoomInControl.addEventListener('click', tag.increaseZoom)
+            zoomOutControl.addEventListener('click', tag.decreaseZoom)
+
+            map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(controlDiv)
+        }
+
+        tag.placeMarker = function (position) {
+            return new google.maps.Marker({
+                position: position,
+                icon: {
+                    url: `data:image/svg+xml;utf-8,
+                          <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="7" cy="7" r="7" fill="orange"></circle>
+                          </svg>`,
+                    anchor: new google.maps.Point(7, 7),
+                },
+                crossOnDrag: false,
+                draggable: false,
+                optimized: false,
+                animation: google.maps.Animation.DROP,
+                map: map
+            })
+        }
+
+        tag.placeCursorMarker = function (position) {
+            return new google.maps.Marker({
+                position: position,
+                icon: {
+                    url: '/assets/images/marker-128.png',
+                    scaledSize: new google.maps.Size(48, 48)
+                },
+                crossOnDrag: false,
+                draggable: true,
+                optimized: false,
+                animation: google.maps.Animation.DROP,
+                map: map
+            })
+        }
+
+        tag.increaseZoom = function () {
+            map.setZoom(map.getZoom() + 1)
+        }
+
+        tag.decreaseZoom = function () {
+            map.setZoom(map.getZoom() - 1)
+        }
+
+
+        tag.updateStartups = function (startups) {
+            tag.removeMarkers()
+
+            tag.markers = startups.map(startup => tag.placeMarker(startup.coords))
+            console.timeEnd('showstartups')
+
+            //TODO : markers at same position http://stackoverflow.com/questions/20490654/more-than-one-marker-on-same-place-markerclusterer
+        }
+
+        tag.updateCooperation = function (cooperations) {
+            tag.removeMarkers()
+
+            tag.markers = cooperations.map(cooperation => tag.placeMarker(cooperation.coords))
+        }
+
+        tag.removeMarkers = function () {
+            tag.markers.forEach(marker => marker.setMap(null))
+
+            tag.markers = []
+        }
+
+        tag.on('unmount', function () {
+            RiotControl.off('startup:show')
+            RiotControl.off('startup:changes')
+            RiotControl.off('cooperation:show')
+            RiotControl.off('startup:changes')
+        })
+
+    </script>
+</google-maps>
