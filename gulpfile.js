@@ -40,4 +40,5 @@ gulp.task('watch', function () {
     gulp.watch(['./src/**/*.html', './src/**/*.tag', './src/**/*.js', './src/**/*.styl'], ['html', 'css', 'rollup'])
 })
 
+gulp.task('build', ['html', 'css', 'assets', 'rollup'])
 gulp.task('default', ['html', 'css', 'assets', 'rollup', 'server', 'watch'])
