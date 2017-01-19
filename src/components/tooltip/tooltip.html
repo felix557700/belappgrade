@@ -1,0 +1,12 @@
+<tooltip>
+    <img src="{opts.company.logo}" alt="{opts.company.name}">
+
+    <script>
+        const tag = this
+
+        tag.on('update', function () {
+            tag.root.style.left = opts.company.left + 'px'
+            tag.root.style.top = opts.company.top + 'px'
+        })
+    </script>
+</tooltip>

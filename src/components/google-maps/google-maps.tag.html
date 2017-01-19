@@ -1,6 +1,8 @@
 <google-maps>
     <div id="map" ref="map" style="height: inherit"></div>
 
+    <tooltip company="{selectedCompany}" show="{tooltipIsVisable}"></tooltip>
+
     <script>
         import RiotControl from 'RiotControl'
 
@@ -13,7 +15,7 @@
             tag.init()
             tag.initZoomControls()
 
-            RiotControl.on('startup:show', _ => {console.log('google show');RiotControl.trigger('startup:fetch')})
+            RiotControl.on('startup:show', _ => RiotControl.trigger('startup:fetch'))
             RiotControl.on('startup:changed', tag.updateStartups)
 
             RiotControl.on('cooperation:show', _ => RiotControl.trigger('cooperation:fetch'))
@@ -214,13 +216,6 @@
 
             map = new google.maps.Map(tag.refs.map, mapOptions)
 
-
-//            var marker = new google.maps.Marker({
-//                position: new google.maps.LatLng(40.6700, -73.9400),
-//                map: map,
-//                title: 'Here is a marker!'
-//            })
-
             google.maps.event.addListener(map, 'click', function (event) {
                 tag.placeCursorMarker(event.latLng)
             })
@@ -247,35 +242,59 @@
             controlDiv.appendChild(zoomInControl)
             controlDiv.appendChild(zoomOutControl)
 
-            zoomInControl.addEventListener('click', tag.increaseZoom)
-            zoomOutControl.addEventListener('click', tag.decreaseZoom)
+            zoomInControl.addEventListener('click', map.setZoom(map.getZoom() + 1))
+            zoomOutControl.addEventListener('click', map.setZoom(map.getZoom() - 1))
 
             map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(controlDiv)
         }
 
-        tag.placeMarker = function (position) {
-            return new google.maps.Marker({
-                position: position,
+        tag.placeMarker = function (company) {
+            let marker = new google.maps.Marker({
+                position: company.coords,
                 icon: {
                     url: `data:image/svg+xml;utf-8,
                           <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="7" cy="7" r="7" fill="orange"></circle>
                           </svg>`,
-                    anchor: new google.maps.Point(7, 7),
+                    anchor: new google.maps.Point(7, 7)
                 },
                 crossOnDrag: false,
                 draggable: false,
                 optimized: false,
-                animation: google.maps.Animation.DROP,
                 map: map
             })
+
+            marker.addListener('mouseover', function () {
+
+                let latLng = new google.maps.LatLng(company.coords.lat, company.coords.lng),
+                    projection = map.getProjection(),
+                    bounds = map.getBounds(),
+                    topRight = projection.fromLatLngToPoint(bounds.getNorthEast()),
+                    bottomLeft = projection.fromLatLngToPoint(bounds.getSouthWest()),
+                    worldPoint = projection.fromLatLngToPoint(latLng),
+                    scale = Math.pow(2, map.getZoom())
+
+                tag.selectedCompany = company
+                tag.selectedCompany.left = Math.floor((worldPoint.x - bottomLeft.x) * scale)
+                tag.selectedCompany.top = Math.floor((worldPoint.y - topRight.y) * scale)
+
+                tag.tooltipIsVisable = true
+                tag.tags.tooltip.update()
+            })
+
+            marker.addListener('mouseout', function () {
+                tag.tooltipIsVisable = false
+                tag.update()
+            })
+
+            return marker
         }
 
         tag.placeCursorMarker = function (position) {
             return new google.maps.Marker({
                 position: position,
                 icon: {
-                    url: '/assets/images/marker-128.png',
+                    url: '/assets/images/marker-128-lightblue.png',
                     scaledSize: new google.maps.Size(48, 48)
                 },
                 crossOnDrag: false,
@@ -286,34 +305,18 @@
             })
         }
 
-        tag.increaseZoom = function () {
-            map.setZoom(map.getZoom() + 1)
-        }
-
-        tag.decreaseZoom = function () {
-            map.setZoom(map.getZoom() - 1)
-        }
-
-
         tag.updateStartups = function (startups) {
-            tag.removeMarkers()
+            tag.markers.forEach(marker => marker.setMap(null))
 
-            tag.markers = startups.map(startup => tag.placeMarker(startup.coords))
-            console.timeEnd('showstartups')
+            tag.markers = startups.map(startup => tag.placeMarker(startup))
 
             //TODO : markers at same position http://stackoverflow.com/questions/20490654/more-than-one-marker-on-same-place-markerclusterer
         }
 
         tag.updateCooperation = function (cooperations) {
-            tag.removeMarkers()
-
-            tag.markers = cooperations.map(cooperation => tag.placeMarker(cooperation.coords))
-        }
-
-        tag.removeMarkers = function () {
             tag.markers.forEach(marker => marker.setMap(null))
 
-            tag.markers = []
+            tag.markers = cooperations.map(cooperation => tag.placeMarker(cooperation))
         }
 
         tag.on('unmount', function () {

@@ -7,6 +7,7 @@ import './components/menu/menu.tag.html'
 import './components/menu/company-links/company-links.html'
 import './components/menu/culture-links/culture-links.html'
 import './components/google-maps/google-maps.tag.html'
+import './components/tooltip/tooltip.html'
 
 function initApp() {
     let startupStore = new StartupStore()
