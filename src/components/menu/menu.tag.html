@@ -9,31 +9,42 @@
         </p>
 
         <div class="icon-group">
-            <div class="icon icon-bulb {icon-orange: isCompanySelected}" onclick="{selectCompanies}"></div>
-            <div class="icon icon-mask {icon-orange: isCultureSelected}" onclick="{selectCulture}"></div>
+            <div class="icon icon-bulb {orange: isCompanySelected}" onclick="{selectCompanies}"></div>
+            <div class="icon icon-mask {orange: isCultureSelected}" onclick="{selectCulture}"></div>
         </div>
 
-        <company-links if="{isCompanySelected}"></company-links>
-        <culture-links if="{isCultureSelected}"></culture-links>
+        <company-links show="{isCompanySelected}"></company-links>
+        <culture-links show="{isCultureSelected}"></culture-links>
 
         <!--TODO only show arrow when at least one item is selected !!! -->
         <div class="arrow {active: isArrowRotated}" onclick="{rotateArrow}" if="{isMenuActive}">
             <i class="fa fa-chevron-up"></i>
         </div>
-        <span class="arrow-text {active: isArrowRotated}">Currently selected</span>
+
+        <span class="arrow-text {active: isArrowRotated}">{selectedLink}</span>
     </div>
 
 
     <script>
+        import RiotControl from 'RiotControl'
+
         const tag = this
 
         tag.isMenuActive = false
+
+        tag.on('mount', function () {
+            RiotControl.on('startup:show', _ => tag.handleLinkClick('startups'))
+            RiotControl.on('cooperation:show', _ => tag.handleLinkClick('cooperation'))
+        })
 
         tag.selectCompanies = function() {
             tag.isMenuActive = true
             tag.isCompanySelected = true
             tag.isCultureSelected = false
             tag.isCvTemplate = false
+
+            zenscroll.center(document.getElementById("map"))
+            RiotControl.trigger('zoom:enable')
         }
 
         tag.selectCulture = function() {
@@ -41,6 +52,9 @@
             tag.isCompanySelected = false
             tag.isCultureSelected = true
             tag.isCvTemplate = false
+
+            zenscroll.center(document.getElementById("map"))
+            RiotControl.trigger('zoom:enable')
         }
 
         tag.closeMenu = function () {
@@ -50,6 +64,16 @@
         tag.rotateArrow = function () {
             tag.isArrowRotated = !tag.isArrowRotated
         }
+
+        tag.handleLinkClick = function (linkText) {
+            tag.selectedLink = linkText
+        }
+
+        tag.on('unmount', function () {
+            RiotControl.off('startup:show')
+            RiotControl.off('cooperation:show')
+        })
+
     </script>
 
 </menu>

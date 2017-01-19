@@ -1,7 +1,7 @@
 <company-links>
     <ul>
-        <li onclick="{showStartups}"><span>startups</span></li>
-        <li onclick="{showCooperation}"><span>cooperation</span></li>
+        <li class="{orange: startupSelected}" onclick="{showStartups}"><span>startups</span></li>
+        <li class="{orange: cooperationSelected}" onclick="{showCooperation}"><span>cooperation</span></li>
         <li onclick="{showEvents}"><span>events</span></li>
         <li onclick="{showJobOffers}"><span>job offers</span></li>
     </ul>
@@ -12,13 +12,18 @@
         const tag = this
 
         tag.showStartups = function () {
-            //TODO : add orange to selected link
 
             RiotControl.trigger('startup:show')
+
+            tag.startupSelected = true
+            tag.cooperationSelected = false
         }
 
         tag.showCooperation = function () {
             RiotControl.trigger('cooperation:show')
+
+            tag.startupSelected = false
+            tag.cooperationSelected = true
         }
 
     </script>

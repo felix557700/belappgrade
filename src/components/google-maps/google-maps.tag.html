@@ -21,6 +21,7 @@
             RiotControl.on('cooperation:show', _ => RiotControl.trigger('cooperation:fetch'))
             RiotControl.on('cooperation:changed', tag.updateCooperation)
 
+            RiotControl.on('zoom:enable', _ => tag.enableScrollwheel())
         })
 
         tag.init = function () {
@@ -328,14 +329,14 @@
             google.maps.event.addListener(map, 'click', function (event) {
                 tag.placeCursorMarker(event.latLng)
             })
+        }
 
-            function enableScrollwheel(map) {
-                if (map) map.setOptions({scrollwheel: true})
-            }
+        tag.enableScrollwheel = function () {
+            if (map) map.setOptions({scrollwheel: true})
+        }
 
-            function disableScrollwheel(map) {
-                if (map) map.setOptions({scrollwheel: false})
-            }
+        tag.disableScrollwheel = function () {
+            if (map) map.setOptions({scrollwheel: false})
         }
 
         tag.initZoomControls = function () {
@@ -433,6 +434,7 @@
             RiotControl.off('startup:changes')
             RiotControl.off('cooperation:show')
             RiotControl.off('startup:changes')
+            RiotControl.off('zoom:enable')
         })
 
     </script>
