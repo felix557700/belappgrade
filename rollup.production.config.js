@@ -4,7 +4,8 @@ import riot from 'rollup-plugin-riot'
 import nodeResolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import includePaths from 'rollup-plugin-includepaths'
-
+import uglify from 'rollup-plugin-uglify'
+import strip from 'rollup-plugin-strip'
 
 export default {
     entry: 'src/app.js',
@@ -41,6 +42,8 @@ export default {
                 ["es2015", {"modules": false}]
             ],
             "plugins": ["external-helpers"]
-        })
+        }),
+        strip(),
+        uglify()
     ]
 }
