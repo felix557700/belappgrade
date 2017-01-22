@@ -8,6 +8,7 @@ import './components/menu/company-links/company-links.tag.html'
 import './components/menu/culture-links/culture-links.tag.html'
 import './components/google-maps/google-maps.tag.html'
 import './components/tooltip/tooltip.tag.html'
+import './components/menu/company-info/company-info.tag.html'
 
 function initApp() {
     let startupStore = new StartupStore()

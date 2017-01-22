@@ -15,15 +15,21 @@
 
         <company-links show="{isCompanySelected}"></company-links>
         <culture-links show="{isCultureSelected}"></culture-links>
-
-        <!--TODO only show arrow when at least one item is selected !!! -->
-        <div class="arrow {active: isArrowRotated}" onclick="{rotateArrow}" if="{isMenuActive}">
-            <i class="fa fa-chevron-up"></i>
-        </div>
-
-        <span class="arrow-text {active: isArrowRotated}">{selectedLink}</span>
+        <company-info company="{companyInfo}" show="{isCompanyInfoSelected}"></company-info>
     </div>
 
+    <div class="arrow">
+        <a class="arrow-icon -chevron {active: !isArrowRotated}" if="{isMenuActive}" onclick="{rotateArrow}">
+            <div>
+                <span class="right"></span>
+                <span class="right"></span>
+                <span class="left"></span>
+                <span class="left"></span>
+            </div>
+        </a>
+    </div>
+
+    <span class="arrow-text {active: isArrowRotated}">{selectedText}</span>
 
     <script>
         import RiotControl from 'RiotControl'
@@ -35,12 +41,14 @@
         tag.on('mount', function () {
             RiotControl.on('startup:show', _ => tag.handleLinkClick('startups'))
             RiotControl.on('cooperation:show', _ => tag.handleLinkClick('cooperation'))
+            RiotControl.on('companyinfo:show', company => tag.handleCompanyInfo(company))
         })
 
         tag.selectCompanies = function() {
             tag.isMenuActive = true
             tag.isCompanySelected = true
             tag.isCultureSelected = false
+            tag.isCompanyInfoSelected = false
             tag.isCvTemplate = false
 
             zenscroll.center(document.getElementById("map"))
@@ -51,6 +59,7 @@
             tag.isMenuActive = true
             tag.isCompanySelected = false
             tag.isCultureSelected = true
+            tag.isCompanyInfoSelected = false
             tag.isCvTemplate = false
 
             zenscroll.center(document.getElementById("map"))
@@ -66,7 +75,18 @@
         }
 
         tag.handleLinkClick = function (linkText) {
-            tag.selectedLink = linkText
+            tag.selectedText = linkText
+        }
+
+        tag.handleCompanyInfo = function(company) {
+            tag.isCompanySelected = false
+            tag.isCultureSelected = false
+            tag.isCompanyInfoSelected = true
+
+            tag.companyInfo = company
+            tag.selectedText = company.name
+
+            tag.update()
         }
 
         tag.on('unmount', function () {

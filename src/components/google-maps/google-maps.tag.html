@@ -352,8 +352,8 @@
             controlDiv.appendChild(zoomInControl)
             controlDiv.appendChild(zoomOutControl)
 
-            zoomInControl.addEventListener('click', map.setZoom(map.getZoom() + 1))
-            zoomOutControl.addEventListener('click', map.setZoom(map.getZoom() - 1))
+            zoomInControl.addEventListener('click', _ => map.setZoom(map.getZoom() + 1))
+            zoomOutControl.addEventListener('click', _ => map.setZoom(map.getZoom() - 1))
 
             map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(controlDiv)
         }
@@ -396,6 +396,8 @@
                 tag.tooltipIsVisable = false
                 tag.update()
             })
+
+            marker.addListener('click', _ => RiotControl.trigger('companyinfo:show', tag.selectedCompany))
 
             return marker
         }

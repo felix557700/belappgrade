@@ -1,6 +1,6 @@
 menu
   z-index: 10
-  
+
   .container
     position: absolute
     display: block
@@ -22,7 +22,10 @@ menu
       transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1)
 
       &.hide
-        transform: translateX(-355px)
+        transform: translateX(-340px)
+
+      &.hide *
+          display: none
 
 
   .main-text
@@ -65,32 +68,112 @@ svg
       fill: orange
 
 
-.arrow
-  position: absolute
-  right: -12px
-  bottom: 12px
-  font-size: 48px
-  will-change: transform
-  transform: rotate(-90deg)
-  transition: all 0.5s 0s ease-in-out
-  transform-origin: center 75%
-
-  &.active
-    right: 8px
-    bottom: 12px
-    transform rotate(90deg)
-    transition: all 0.5s 0s ease-in-out
-
 .arrow-text
   position: absolute
-  width: 480px
-  left: 137px
-  bottom: 281px
+  height: 60px
+  bottom: -35px
   font-size: 40px
+  line-height: 1.4
   text-transform: uppercase
   transform: rotate(-90deg)
+  transform-origin: left top
+  color: white
   opacity: 0
+  pointer-events: none;
 
   &.active
     opacity 1
     transition: opacity 0.5s 0s
+
+
+.arrow
+  position: absolute
+  top: 0
+  left: 0
+  cursor: pointer
+
+.arrow-icon
+  display: inline-block
+  position: relative
+  width: 60px
+  min-width: 20px
+  max-width: 60px
+  max-height: 60px
+
+.arrow-icon span 
+  background: white
+  position: absolute
+
+.-chevron 
+  height: 60px
+
+.-chevron div 
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate3d(-75%, -50%, 0) rotate(-45deg)
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0, 1) 0.2s
+  width: calc(60px / 2)
+  height: calc(60px / 2)
+
+.-chevron span 
+  position: absolute
+  background: white
+
+  &:nth-of-type(odd)
+    width: 4px
+    top: 0
+    bottom: 0
+
+  &:nth-of-type(even)
+    height: 4px
+    left: 0
+    right: 0
+
+  &:nth-of-type(1)
+    right: 0
+    transform-origin: bottom
+    transition: transform 0.3s cubic-bezier(0.1, 0.5, 0.2, 1) 0.4s
+
+  &:nth-of-type(2)
+    bottom: 0
+    transform-origin: left
+    transition: transform 0.15s linear 0.3s
+
+  &:nth-of-type(3)
+    left: 0
+    transform-origin: bottom
+    transform: scale3d(1, 0, 1)
+    transition: transform 0.15s linear 0.3s
+
+  &:nth-of-type(4)
+    top: 0
+    transform-origin: left
+    transform: scale3d(0, 1, 1)
+    transition: transform 0.2s cubic-bezier(0.69, 0, 0.94, 1)
+
+
+.-chevron.active div 
+  transform: translate3d(-25%, -50%, 0) rotate(-45deg)
+
+.-chevron.active span
+  &:nth-of-type(1)
+    transform-origin: top
+    transform: scale3d(1, 0, 1)
+    transition: transform 0.15s linear 0.3s
+
+  &:nth-of-type(2)
+    transform-origin: right
+    transform: scale3d(0, 1, 1)
+    transition: transform 0.2s cubic-bezier(0.69, 0, 0.94, 1)
+
+  &:nth-of-type(3)
+    transform-origin: top
+    transform: scale3d(1, 1, 1)
+    transition: transform 0.3s cubic-bezier(0.1, 0.5, 0.2, 1) 0.4s
+
+  &:nth-of-type(4)
+    transform-origin: right
+    transform: scale3d(1, 1, 1)
+    transition: transform 0.15s linear 0.3s
+

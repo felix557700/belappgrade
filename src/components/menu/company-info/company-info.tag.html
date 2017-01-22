@@ -1,0 +1,29 @@
+<company-info>
+
+    <img src="{opts.company.logo}" alt="opts.company.name">
+
+    <div class="info-text">
+        {opts.company.info}
+    </div>
+
+    <div class="social-links">
+        <virtual each={link in opts.company.links}>
+            <a href="{link.href}" target="_blank" rel="noopener noreferrer">
+                <i class="fa fa-2x fa-{link.type}"></i>
+            </a>
+        </virtual>
+    </div>
+
+    <div class="contact">
+        <div>
+            <b>Lokacija: </b>
+            <span>{opts.company.address}, {opts.company.city}</span>
+        </div>
+
+        <div>
+            <b>Email: </b>
+            <span>{opts.company.email}</span>
+        </div>
+    </div>
+
+</company-info>
