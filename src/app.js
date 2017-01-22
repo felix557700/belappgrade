@@ -6,9 +6,10 @@ import './components/home/home.tag.html'
 import './components/menu/menu.tag.html'
 import './components/menu/company-links/company-links.tag.html'
 import './components/menu/culture-links/culture-links.tag.html'
+import './components/menu/company-info/company-info.tag.html'
 import './components/google-maps/google-maps.tag.html'
 import './components/tooltip/tooltip.tag.html'
-import './components/menu/company-info/company-info.tag.html'
+import './components/map-logo/map-logo.tag.html'
 
 function initApp() {
     let startupStore = new StartupStore()

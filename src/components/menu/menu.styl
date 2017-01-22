@@ -1,3 +1,7 @@
+$tablet = 1200px
+$phone-big = 790px
+$phone = 550px
+
 menu
   z-index: 10
 
@@ -11,6 +15,16 @@ menu
     transform: translate(-50%, -50%)
     background-color: rgba(0, 0, 0, 0.7)
     color: #fff
+    @media (max-width: $tablet)
+      width: 75vw
+      height: 70vh
+    @media (max-width: $phone-big)
+      width: 90vw
+      height: 85vh
+    @media (max-width: $phone)
+      width: 100vw
+      height: 100vh
+      z-index: 10
 
     &.active
       width: 400px
@@ -29,17 +43,23 @@ menu
 
 
   .main-text
-    font-size: 45px
+    font-size: 42px
     line-height: 1.3
-    margin: 10%
+    margin: 5%
     margin-bottom: 40px
     text-align: center
+    @media (max-width: $phone-big)
+      font-size: calc(10px + 4vw)
 
   .choose-text
     font-size: 28px
     text-align: center
     width: 500px
     margin: 36px auto
+    @media (max-width: $phone-big)
+      font-size: calc(8px + 3vw);
+      width: auto
+      margin: 36px
 
   .icon-group
     position: relative
@@ -49,6 +69,10 @@ menu
     top: 20px
     left: 50%
     transform: translateX(-50%)
+    @media (max-width: $phone-big)
+      max-width: 300px;
+      width: 70vw;
+
 
   .container.active .icon-group
     top: 70px
@@ -82,6 +106,8 @@ svg
   pointer-events: none;
 
   &.active
+    width: 85vh
+    z-index: 10
     opacity 1
     transition: opacity 0.5s 0s
 
@@ -91,6 +117,7 @@ svg
   top: 0
   left: 0
   cursor: pointer
+  z-index: 11
 
 .arrow-icon
   display: inline-block
