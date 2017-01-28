@@ -1,9 +1,9 @@
 <company-links>
     <ul>
-        <li class="{orange: startupSelected}" onclick="{showStartups}"><span>startups</span></li>
-        <li class="{orange: cooperationSelected}" onclick="{showCooperation}"><span>cooperation</span></li>
-        <li onclick="{showEvents}"><span>events</span></li>
-        <li onclick="{showJobOffers}"><span>job offers</span></li>
+        <li class="hide-tap-highlight {orange: startupSelected}" onclick="{showStartups}"><span>startups</span></li>
+        <li class="hide-tap-highlight {orange: cooperationSelected}" onclick="{showCooperation}"><span>cooperation</span></li>
+        <li class="hide-tap-highlight" onclick="{showEvents}"><span>events</span></li>
+        <li class="hide-tap-highlight {orange: jobOffersSelected}" onclick="{showJobOffers}"><span>job offers</span></li>
     </ul>
 
     <script>
@@ -12,18 +12,29 @@
         const tag = this
 
         tag.showStartups = function () {
-
-            RiotControl.trigger('startup:show')
-
             tag.startupSelected = true
             tag.cooperationSelected = false
+            tag.jobOffersSelected = false
+
+            RiotControl.trigger('joboffers:hide')
+            RiotControl.trigger('startup:show')
         }
 
         tag.showCooperation = function () {
-            RiotControl.trigger('cooperation:show')
-
             tag.startupSelected = false
             tag.cooperationSelected = true
+            tag.jobOffersSelected = false
+
+            RiotControl.trigger('joboffers:hide')
+            RiotControl.trigger('cooperation:show')
+        }
+
+        tag.showJobOffers = function () {
+            tag.startupSelected = false
+            tag.cooperationSelected = false
+            tag.jobOffersSelected = true
+
+            RiotControl.trigger('joboffers:show')
         }
 
     </script>

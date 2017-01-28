@@ -8,7 +8,7 @@
             Choose between different categories: Startups or Culture
         </p>
 
-        <div class="icon-group">
+        <div class="icon-group hide-tap-highlight">
             <div class="icon icon-bulb {orange: isCompanySelected}" onclick="{selectCompanies}"></div>
             <div class="icon icon-mask {orange: isCultureSelected}" onclick="{selectCulture}"></div>
         </div>
@@ -18,7 +18,7 @@
         <company-info company="{companyInfo}" show="{isCompanyInfoSelected}"></company-info>
     </div>
 
-    <div class="arrow">
+    <div class="arrow hide-tap-highlight">
         <a class="arrow-icon -chevron {active: !isArrowRotated}" if="{isMenuActive}" onclick="{rotateArrow}">
             <div>
                 <span class="right"></span>

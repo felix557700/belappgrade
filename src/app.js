@@ -10,6 +10,7 @@ import './components/menu/company-info/company-info.tag.html'
 import './components/google-maps/google-maps.tag.html'
 import './components/tooltip/tooltip.tag.html'
 import './components/map-logo/map-logo.tag.html'
+import './components/job-offers/job-offers.tag.html'
 
 function initApp() {
     let startupStore = new StartupStore()

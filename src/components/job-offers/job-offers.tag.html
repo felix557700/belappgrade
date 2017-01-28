@@ -1,0 +1,48 @@
+<job-offers show="{shouldDisplay}">
+
+    <div class="offer">
+        <img src="/assets/images/startups/nordeus.png" alt="">
+    </div>
+
+    <div class="offer">
+        <img src="/assets/images/startups/eonplus.png" alt="">
+    </div>
+
+    <div class="offer">
+        <img src="/assets/images/startups/mbraintrain.png" alt="">
+    </div>
+
+    <div class="offer">
+        <img src="/assets/images/startups/3heroesstudio.png" alt="">
+    </div>
+
+    <div class="offer">
+        <img src="/assets/images/startups/strawberryenergy.png" alt="">
+    </div>
+
+
+    <script>
+        import RiotControl from 'RiotControl'
+
+        const tag = this
+
+        tag.shouldDisplay = false
+
+        tag.on('mount', _ => {
+            RiotControl.on('joboffers:show', tag.showTag)
+            RiotControl.on('joboffers:hide', tag.hideTag)
+        })
+
+        tag.showTag = function () {
+            tag.shouldDisplay = true
+            tag.update()
+        }
+
+        tag.hideTag = function () {
+            tag.shouldDisplay = false
+            tag.update()
+        }
+
+    </script>
+
+</job-offers>
