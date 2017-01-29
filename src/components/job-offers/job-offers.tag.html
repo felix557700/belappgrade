@@ -1,23 +1,7 @@
 <job-offers show="{shouldDisplay}">
 
-    <div class="offer">
-        <img src="/assets/images/startups/nordeus.png" alt="">
-    </div>
-
-    <div class="offer">
-        <img src="/assets/images/startups/eonplus.png" alt="">
-    </div>
-
-    <div class="offer">
-        <img src="/assets/images/startups/mbraintrain.png" alt="">
-    </div>
-
-    <div class="offer">
-        <img src="/assets/images/startups/3heroesstudio.png" alt="">
-    </div>
-
-    <div class="offer">
-        <img src="/assets/images/startups/strawberryenergy.png" alt="">
+    <div class="offer" each="{offer in offers}" onclick="{selectCompany}">
+        <img src="{offer.logo}" alt=""/>
     </div>
 
 
@@ -27,20 +11,33 @@
         const tag = this
 
         tag.shouldDisplay = false
+        tag.offers = []
 
         tag.on('mount', _ => {
+
             RiotControl.on('joboffers:show', tag.showTag)
             RiotControl.on('joboffers:hide', tag.hideTag)
+            RiotControl.on('offers:changed', tag.showOffers)
         })
 
         tag.showTag = function () {
             tag.shouldDisplay = true
             tag.update()
+            RiotControl.trigger('offers:fetch')
         }
 
         tag.hideTag = function () {
             tag.shouldDisplay = false
             tag.update()
+        }
+
+        tag.showOffers = function (offers) {
+            tag.offers = offers
+            tag.update()
+        }
+
+        tag.selectCompany = function (e) {
+            console.log('selected company', e.item.offer)
         }
 
     </script>

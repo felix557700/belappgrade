@@ -2,6 +2,7 @@ import riot from 'riot'
 import RiotControl from 'RiotControl'
 import StartupStore from './flux/stores/StartupStore'
 import CooperationStore from './flux/stores/CooperationStore'
+import JobOffersStore from './flux/stores/JobOffersStore'
 import './components/home/home.tag.html'
 import './components/menu/menu.tag.html'
 import './components/menu/company-links/company-links.tag.html'
@@ -18,6 +19,9 @@ function initApp() {
 
     let cooperationStore = new CooperationStore()
     RiotControl.addObserver('cooperation', cooperationStore)
+
+    let jobOffersStore = new JobOffersStore()
+    RiotControl.addObserver('offers', jobOffersStore)
 
     riot.mount('*')
 }
