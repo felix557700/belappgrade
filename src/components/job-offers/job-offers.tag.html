@@ -1,9 +1,10 @@
-<job-offers show="{shouldDisplay}">
+<job-offers show="{shouldDisplay}" choose="{!!selectedOffer}">
 
-    <div class="offer" each="{offer in offers}" onclick="{selectCompany}">
+    <div class="offer {selected: selectedOffer === offer}" each="{offer, i in offers}" onclick="{selectCompany}" ref="offer-{i}">
         <img src="{offer.logo}" alt=""/>
     </div>
 
+    <cv-template company="selectedOffer" if="{selectedOffer}"></cv-template>
 
     <script>
         import RiotControl from 'RiotControl'
@@ -12,6 +13,7 @@
 
         tag.shouldDisplay = false
         tag.offers = []
+        tag.selectedOffer = null
 
         tag.on('mount', _ => {
 
@@ -28,6 +30,7 @@
 
         tag.hideTag = function () {
             tag.shouldDisplay = false
+            tag.invalidateSelectedOffer()
             tag.update()
         }
 
@@ -36,8 +39,14 @@
             tag.update()
         }
 
+        tag.invalidateSelectedOffer = function () {
+            tag.selectedOffer = null
+            tag.update()
+        }
+
         tag.selectCompany = function (e) {
-            console.log('selected company', e.item.offer)
+            tag.selectedOffer = e.item.offer
+            tag.update()
         }
 
     </script>

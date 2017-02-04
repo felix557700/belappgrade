@@ -13,12 +13,14 @@ job-offers
   flex-wrap: wrap
   padding: 10vw 2vw 0
   overflow: auto
-  opacity: 0
 
-  animation: show 0.5s 0.25s
-  animation-fill-mode: forwards
+  &[choose]
+    padding: 5vw 2vw 0
 
-  .offer 
+  &[choose] .offer:not(.selected)
+    display: none
+
+  .offer
     height: 130px
     width: 130px
     margin: 3%
@@ -31,4 +33,5 @@ job-offers
   .offer img 
     max-width: 100%
     max-height: 100%
-  
+
+

@@ -1,0 +1,83 @@
+<cv-template>
+
+    <!--{opts.name}-->
+    <!--{opts.positions.length}-->
+
+    <div class="row">
+        <div class="col col-1-1">
+            <select>
+                <option value="123">intern</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col col-1-2">
+            <input type="text" id="first" autocomplete="off" required/>
+            <label for="first">First name</label>
+        </div>
+
+        <div class="col col-1-2">
+            <input type="text" id="last" autocomplete="off" required/>
+            <label for="last">Last name</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col col-1-2">
+            <input type="text" id="email" autocomplete="off" required/>
+            <label for="email">Email</label>
+        </div>
+
+        <div class="col col-1-2">
+            <input type="text" id="phone" autocomplete="off" required/>
+            <label for="phone">Phone number</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col col-1-1">
+            <textarea type="text" rows="3" id="education" autocomplete="off" required></textarea>
+            <label for="education">Education</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col col-1-1">
+            <textarea type="text" rows="3" id="experience" autocomplete="off" required></textarea>
+            <label for="experience">Work experience</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col col-1-1">
+            <textarea type="text" rows="3" id="skills" autocomplete="off" required></textarea>
+            <label for="skills">Skills</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col col-1-1">
+            <input type="text" id="languages" autocomplete="off" required/>
+            <label for="languages">Languages</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col col-1-1">
+            <textarea type="text" rows="5" id="motivation" autocomplete="off" required></textarea>
+            <label for="motivation">Motivation</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col col-1-2">
+            <button onclick="{parent.invalidateSelectedOffer}">Back</button>
+        </div>
+
+        <div class="col col-1-2">
+            <button>Send</button>
+        </div>
+    </div>
+
+</cv-template>
