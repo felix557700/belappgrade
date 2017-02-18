@@ -21,6 +21,9 @@
             RiotControl.on('cooperation:show', _ => RiotControl.trigger('cooperation:fetch'))
             RiotControl.on('cooperation:changed', tag.updateCooperation)
 
+            RiotControl.on('curturalplaces:show', _ => RiotControl.trigger('curturalplaces:fetch'))
+            RiotControl.on('curturalplaces:changed', tag.updateMarkers)
+
             RiotControl.on('zoom:enable', _ => tag.enableScrollwheel())
         })
 
@@ -431,11 +434,19 @@
             tag.markers = cooperations.map(cooperation => tag.placeMarker(cooperation))
         }
 
+        tag.updateMarkers = function (places) {
+            tag.markers.forEach(marker => marker.setMap(null))
+
+            tag.markers = places.map(place => tag.placeMarker(place))
+        }
+
         tag.on('unmount', function () {
             RiotControl.off('startup:show')
-            RiotControl.off('startup:changes')
+            RiotControl.off('startup:changed')
             RiotControl.off('cooperation:show')
-            RiotControl.off('startup:changes')
+            RiotControl.off('cooperation:changed')
+            RiotControl.off('curturalplaces:show')
+            RiotControl.off('curturalplaces:changed')
             RiotControl.off('zoom:enable')
         })
 

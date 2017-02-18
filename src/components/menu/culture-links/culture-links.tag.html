@@ -1,13 +1,30 @@
 <culture-links>
     <ul>
-        <li class="hide-tap-highlight" onclick="{showCulturalEvents}">cultural events</li>
-        <li class="hide-tap-highlight" onclick="{showPublicArts}">public arts</li>
-        <li class="hide-tap-highlight" onclick="{showAddEventForm}">add event</li>
+        <li class="hide-tap-highlight {orange: culturalPlacesSelected}" onclick="{showCulturalPlaces}">cultural places</li>
+        <li class="hide-tap-highlight {orange: publicArtsSelected}" onclick="{showPublicArts}">public arts</li>
     </ul>
 
     <script>
+        import RiotControl from 'RiotControl'
+
         const tag = this
 
+        tag.showCulturalPlaces = function () {
+            tag.culturalPlacesSelected = true
+            tag.publicArtsSelected = false
 
+            RiotControl.trigger('curturalplaces:show')
+        }
+
+        tag.showPublicArts = function () {
+            tag.culturalPlacesSelected = false
+            tag.publicArtsSelected = true
+        }
+
+        tag.on('update', function () {
+            if (!tag.opts.show) {
+                tag.culturalPlacesSelected = tag.publicArtsSelected = false
+            }
+        })
     </script>
 </culture-links>

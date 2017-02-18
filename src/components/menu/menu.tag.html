@@ -41,6 +41,7 @@
         tag.on('mount', function () {
             RiotControl.on('startup:show', _ => tag.handleLinkClick('startups'))
             RiotControl.on('cooperation:show', _ => tag.handleLinkClick('cooperation'))
+            RiotControl.on('curturalplaces:show', _ => tag.handleLinkClick('cultural places'))
             RiotControl.on('companyinfo:show', company => tag.handleCompanyInfo(company))
         })
 

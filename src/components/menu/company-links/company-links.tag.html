@@ -36,5 +36,13 @@
             RiotControl.trigger('joboffers:show')
         }
 
+        tag.on('update', function () {
+            if (!tag.opts.show) {
+                tag.startupSelected = tag.cooperationSelected = tag.jobOffersSelected = false
+
+                RiotControl.trigger('joboffers:hide')
+            }
+        })
+
     </script>
 </company-links>

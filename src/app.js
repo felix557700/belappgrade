@@ -3,6 +3,7 @@ import RiotControl from 'RiotControl'
 import StartupStore from './flux/stores/StartupStore'
 import CooperationStore from './flux/stores/CooperationStore'
 import JobOffersStore from './flux/stores/JobOffersStore'
+import CulturalPlacesStore from './flux/stores/CulturalPlacesStore'
 import './components/home/home.tag.html'
 import './components/menu/menu.tag.html'
 import './components/menu/company-links/company-links.tag.html'
@@ -23,6 +24,9 @@ function initApp() {
 
     let jobOffersStore = new JobOffersStore()
     RiotControl.addObserver('offers', jobOffersStore)
+
+    let curturalPlaceStore = new CulturalPlacesStore()
+    RiotControl.addObserver('curturalplaces', curturalPlaceStore)
 
     riot.mount('*')
 }
