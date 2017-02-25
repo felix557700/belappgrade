@@ -10,7 +10,7 @@ export default class CulturalPlacesStore {
         store.curturalPlaces = [
             {
                 name: 'GUARNERIUS',
-                logo: '/assets/images/',
+                logo: '/assets/images/culturalplaces/guarnerius.png',
                 coords: {lat: 44.817788, lng: 20.46758},
                 info: 'GUARNERIUS, Centar lepih umetnosti Jovana Kolundžije, je odlukom Vlade Republike Srbije, 2013. godine proglašen za USTANOVU KULTURE OD NACIONALNOG ZNAČAJA Centar lepih umetnosti GUARNERIUS je 1996. godine osnovao naš proslavljeni umetnik, violinista Jovan Kolundžija, kao prvu privatnu instituciju kulture u našoj zemlji, a centar je počeo sa radom 2. oktobra 2001. godine, posle pet godina obimne rekonstrukcije i opremanja nekada potpuno ruiniranom zdanju iz 1924. godine, Guarnerius je centar edukacije, gde se mladima pruža mogućnost učešća na brojnim majstorskim kursevima i takmičenjima, a takođe, važan segment svake umetničke sezone u Guarneriusu, su ciklusi koncerata mladih talenata, koji se realizuju uz veliku medijsku podršku.',
                 links: [
@@ -37,7 +37,7 @@ export default class CulturalPlacesStore {
             },
             {
                 name: 'Zaduzbina Ilije M. Kolarca',
-                logo: '/assets/images/',
+                logo: '/assets/images/culturalplaces/kolarac.png',
                 coords: {lat: 44.8191121, lng: 20.4563296},
                 info: 'lija Milosavljević Kolarac 1878. godine testamentom je sav svoj imetak ostavio srpskom narodu u cilju širenja nauke i kulture. Od sveg imanja trebalo je osnovati Fond za podizanje srpskog univerziteta, koji će se zvati Univerzitet Ilije M. Kolarca osnovan sopstvenim trudom na korist svoga naroda. Kolarčev narodni univerzitet otpočeo je svoju programsku delatnost 9. oktobra 1932. Odlukom 05 BR. 022-3566/2013 Ministarstva kulture i informisanja od 13. aprila 2013. godine Zadužbina Ilije M. Kolarca dobila je status ustanove kulture od nacionalnog značaja.Centar promoviše umetničku muziku i muzičku kulturu u Beogradu. Program je namenjen ljubiteljima i poznavaocima muzike kao i profesionalnim muzičarima. U Velikoj dvorani i Muzičkoj galeriji se godišnje održi više od 300 različitih priredbi i koncerata.',
                 links: [
@@ -68,7 +68,7 @@ export default class CulturalPlacesStore {
             },
             {
                 name: 'SKC',
-                logo: '/assets/images/',
+                logo: '/assets/images/culturalplaces/skc.png',
                 coords: {lat: 44.8060389, lng: 20.4640464},
                 info: 'Studentski kulturni centar osnovali su 1968. godine Beogradski univerzitet i Univerzitetski odbor saveza studenata Beograda sa inicijalnim mandatom da se omogući kulturna komunikacija studenata Beogradskog univerziteta. Godine 1992. ingerencije osnivača preuzela je Vlada Republike Srbije – Ministarstvo prosvete. Aktivnosti SKC-a odvijaju se prema godišnjim planovima koje koncipiraju urednici pojedinačnih programa čiji broj je, međutim, promenljiv, kako bi se pravovremeno odreagovalo na „pritiske“ stvarne kulturne scene, kao što su promenljivi i profili i tzv. nezamenljivih programa u zavisnosti od afiniteta aktuelnih urednika i aktivnih redakcijskih saradnika.Javnost se o odvijanju programa obaveštava putem mesečnog biltena SKiCa, saopštenjima za medije i pojedinačnim pratećim propagandnim materijalima.',
                 links: [
@@ -95,8 +95,8 @@ export default class CulturalPlacesStore {
             },
             {
                 name: 'DOM OMLADINE',
-                logo: '/assets/images/',
-                coords: {lat: 0, lng: 0},
+                logo: '/assets/images/culturalplaces/domomladine.png',
+                coords: {lat: 44.8154752, lng: 20.4628924},
                 info: 'Dom omladine Beograda je ustanova kultura i obrazovanja Grada Beograda, koja već 50 godina, još od 1964. godine, kreira i organizuje programe za mlade i u saradnji sa mladima.  U svom spektru delatnosti Dom omladine obuhvata sve umetničke discipline i forme: muziku, film, pozorište, vizuelne umetnosti i nove medije.Osnovna načela i kriterijumi u kreiranju programa su kvalitet, inovativnost, aktuelnost i dostupnost programa mladima. Profesionalnost, fleksibilnost i prilagodljivost bilo kom zahtevu, te visoki standardi u realizaciji podrazumevaju se u svim aktivnostima Doma omladine Beograda.Posebna pažnja posvećena je obrazovnom programu, koji je za učenike i studente potpuno besplatan, a realizuje se kroz brojne radionice i predavanja iz najrazličitijih oblasti.',
                 links: [
                     {
@@ -123,7 +123,7 @@ export default class CulturalPlacesStore {
             },
             {
                 name: 'MIKSER HOUSE',
-                logo: '/assets/images/',
+                logo: '/assets/images/culturalplaces/mikserhouse.png',
                 coords: {lat: 44.8138565, lng: 20.4512815},
                 info: 'Mikser je multidisciplinarna platforma koja podstiče razvoj kreativne ekonomije zemlje i regiona, i uspostavlja dijalog između savremenih globalnih tendencija i domaće i regionalne prakse.Mikser House predstavlja novi koncept kulturne institucije koja spaja kulturne, edukativne, ali i komercijalne aktivnosti u multifunkcionalnom prostoru koji je nastao kreativnom transformacijom starog gradskog magacina. Danas, na mestu nekadašnje industrijske garaže, u Savamali, jednom od sada najperspektivnijih beogradskih kvartova, Mikser House doprinosi novim transformacijama ovog dela grada, pretvarajući ga u kulturni distrikt. Pet dana, dva stejdža i desetine izvođača obeležiće muzički program ovogodišnjeg Mikser festivala. Sedmi po redu Mikser festival, “Neizdrž”, traje od 3. do 7. juna, obuhvatiće devet programskih celina i odvijaće se na različitim lokacijama širom Savamale.',
                 links: [
@@ -155,7 +155,7 @@ export default class CulturalPlacesStore {
             },
             {
                 name: 'Ben Akiba',
-                logo: '/assets/images/',
+                logo: '/assets/images/culturalplaces/benakiba.png',
                 coords: {lat: 44.81428, lng: 20.45067},
                 info: 'Prvi klub komedije u Srbiji koji je nastao iz saradnje Ben Akiba ugostiteljskog tima i Standup.rs, organizacije koja je osnovala scenu stand up komedije',
                 links: [
